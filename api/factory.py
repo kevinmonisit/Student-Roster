@@ -18,10 +18,8 @@ class MongoJsonEncoder(JSONEncoder):
 
 def create_app():
 
-    APP_DIR = os.path.abspath(os.path.dirname(__file__))
-    STATIC_FOLDER = os.path.join(APP_DIR, '../build/')
     app = Flask(__name__,
-                static_folder=STATIC_FOLDER,
+                static_folder='../build/',
                 static_url_path='/')
 
     app.wsgi_app = WhiteNoise(app.wsgi_app, root='./build')
