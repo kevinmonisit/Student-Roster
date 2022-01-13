@@ -17,6 +17,8 @@ To begin an instance of the flask server, cd into the project and type:
 gunicorn wsgi:"gunicorn_get_app()"
 ```
 
+Make sure you're running the python virtual environemnt when running the above command. You will know if you are running a python env when the beginning of your console starts with `(venv)`.
+
 Alternatively, you can use the currently (at the time of writing this) activate Heroku link:
 
 https://cryptic-castle-74585.herokuapp.com/
