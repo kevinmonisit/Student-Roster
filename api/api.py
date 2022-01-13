@@ -28,7 +28,7 @@ db = LocalProxy(get_db)
 
 
 @main.route('/test')
-def add_test(test):
+def add_test():
     test_doc = {'w': 2}
     db.students.insert_one(test_doc)
 

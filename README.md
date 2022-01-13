@@ -6,7 +6,14 @@ To run on your own computer, type the following:
 ```
 git git@github.com:kevinmonisit/Student-Roster-OSS.git
 cd Student-Roster-OSS
-source api/venv/bin/activate
+npm install
+python3 -m venv ./api/venv
+source ./api/venv/bin/activate
+pip install -r requirements.txt
+```
+
+To begin an instance of the flask server, cd into the project and type:
+```
 gunicorn wsgi:"gunicorn_get_app()"
 ```
 
