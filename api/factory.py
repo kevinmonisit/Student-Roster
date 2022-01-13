@@ -27,7 +27,7 @@ def create_app():
                 template_folder=TEMPLATE_FOLDER,
                 static_url_path='/')
 
-    app.wsgi_app = WhiteNoise(app.wsgi_app, root=STATIC_FOLDER)
+    app.wsgi_app = WhiteNoise(app.wsgi_app, root='./build')
     app.json_decoder = MongoJsonEncoder
     CORS(app)
 
