@@ -24,7 +24,7 @@ def create_app():
                 static_url_path='/')
 
     app.wsgi_app = WhiteNoise(app.wsgi_app, root='./build')
-    app.json_decoder = MongoJsonEncoder
+    app.json_encoder = MongoJsonEncoder
     CORS(app)
 
     @app.route('/')

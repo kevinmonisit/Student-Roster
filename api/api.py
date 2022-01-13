@@ -1,6 +1,8 @@
 import sys
-from flask import current_app, g
+from flask import current_app, g, request
+from flask import json
 from flask.blueprints import Blueprint
+from flask.json import jsonify
 from flask_pymongo import PyMongo
 from werkzeug.local import LocalProxy
 import time
@@ -29,8 +31,35 @@ db = LocalProxy(get_db)
 
 @main.route('/test')
 def add_test():
-    test_doc = {'w': 2}
+
+    name = request.args.get('name')
+    last_name = request.args.get('last_name')
+
+    test_doc = {'s': name,
+                'last_name': last_name
+                }
     db.students.insert_one(test_doc)
+
+    return jsonify(test_doc)
+
+
+@main.route('/add_student')
+def add_student():
+    student_first_name = request.args.get('first_name')
+    student_last_name = request.args.get('last_name')
+    grad_year = request.args.get('grad_year')
+    major = request.args.get('major')
+
+    student_doc = {
+        'first_name': student_first_name,
+        'last_name': student_last_name,
+        'grad_year': grad_year,
+        'major': major
+    }
+
+    db.students.insert_one(student_doc)
+
+    return jsonify(student_doc)
 
 
 @main.route('/time', methods=['GET'])
