@@ -20,26 +20,11 @@ def get_db():
 
         db = g._database = PyMongo(current_app).db
 
-
     return db
 
 
 # Use LocalProxy to read the global db instance with just `db`
 db = LocalProxy(get_db)
-
-
-@main.route('/test')
-def add_test():
-
-    name = request.args.get('name')
-    last_name = request.args.get('last_name')
-
-    test_doc = {'s': name,
-                'last_name': last_name
-                }
-    db.students.insert_one(test_doc)
-
-    return jsonify(test_doc)
 
 
 @main.route('/add_student', methods=['POST'])
@@ -69,8 +54,3 @@ def get_students():
         students.append(student)
 
     return jsonify({'student_list': students})
-
-
-@main.route('/time', methods=['GET'])
-def get_current_time():
-    return {'time': time.time()}

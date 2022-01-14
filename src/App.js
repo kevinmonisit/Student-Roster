@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import StudentList from './components/StudentList';
 import StudentInfo from './components/StudentInfo';
 
+
 const RUNNING_GUNICORN = false;
 
 function App() {
@@ -10,17 +11,22 @@ function App() {
   const [currentStudent, setCurrentStudent] = useState();
 
   useEffect(() => {
-    if()
-    fetch('/get_students').then(res => res.json()).then(data => {
+    let json_file;
+
+    if(!RUNNING_GUNICORN)
+      json_file = 'sample_dataset.json';
+    else
+      json_file = '/get_students';
+
+    fetch(json_file).then(res => res.json()).then(data => {
       setStudentList(data);
-      console.log(studentList);
     })
   }, [])
 
   if (studentList && Object.getOwnPropertyNames(studentList).length > 0) {
     return (
       <div>
-        <StudentList NOT_RUNNING_GUNICORN={true} studentList={studentList}></StudentList>
+        <StudentList studentList={studentList}></StudentList>
         <StudentInfo student={studentList}></StudentInfo>
       </div>
     )
