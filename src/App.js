@@ -1,17 +1,16 @@
 import './App.css';
 import React, {useState, useEffect} from 'react'
-import StudentButton from './components/studentButton';
+import StudentList from './components/StudentList';
+import StudentInfo from './components/StudentInfo';
+
+const RUNNING_GUNICORN = false;
 
 function App() {
   const [studentList, setStudentList] = useState({});
-
-  // useEffect(() => {
-  //   fetch('/student_names').then(res => res.json()).then(data => {
-  //     setCurrentTime(data.time);
-  //   });
-  // }, []);
+  const [currentStudent, setCurrentStudent] = useState();
 
   useEffect(() => {
+    if()
     fetch('/get_students').then(res => res.json()).then(data => {
       setStudentList(data);
       console.log(studentList);
@@ -19,9 +18,12 @@ function App() {
   }, [])
 
   if (studentList && Object.getOwnPropertyNames(studentList).length > 0) {
-    return studentList['student_list'].map(student => {
-      return <StudentButton name={student.first_name}></StudentButton>
-    })
+    return (
+      <div>
+        <StudentList NOT_RUNNING_GUNICORN={true} studentList={studentList}></StudentList>
+        <StudentInfo student={studentList}></StudentInfo>
+      </div>
+    )
   } else {
     return "Loading student data...";
   }
