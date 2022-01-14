@@ -88,18 +88,20 @@ function StudentInfo(props) {
         </form>
       </div>
     )
-  }
+  } else {
 
-  const {first_name, last_name, grad_year, major} = props.student;
+    const {first_name, last_name, grad_year, major, _id} = props.student;
 
-    return (
-      <div>
-        First Name: {first_name} <br></br>
-        Last Name: {last_name} <br></br>
-        Major: {major} <br></br>
-        Graduation Year: {grad_year}
-      </div>
-    )
+      return (
+        <div>
+          First Name: {first_name} <br></br>
+          Last Name: {last_name} <br></br>
+          Major: {major} <br></br>
+          Graduation Year: {grad_year}
+        </div>
+      )
+    }
+
 }
 
 export default StudentInfo;

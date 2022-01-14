@@ -7,6 +7,7 @@ from flask.json import jsonify
 from flask_pymongo import PyMongo
 from werkzeug.local import LocalProxy
 import time
+import os
 
 main = Blueprint('main', __name__)
 
@@ -60,3 +61,13 @@ def get_students():
 @main.route('/deleteDB')
 def delete():
     db.students.delete_many({})
+
+
+@main.route('/fillWithSampleDB')
+def fill():
+    path = os.path.join(current_app.static_folder, 'sample_dataset.json')
+    with open(path) as file:
+        sampleDB = json.load(file)
+
+        db.students.delete_many({})
+        db.students.insert_many(sampleDB['student_list'])
