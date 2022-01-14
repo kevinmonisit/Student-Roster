@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
 
+const handleDelete = (event, _id) => {
+  console.log(_id);
+  const response = fetch(`/delete/${_id}`);
+  window.location.reload();
+}
+
 function StudentInfo(props) {
 
   const [values, setValues] = useState({
@@ -27,10 +33,7 @@ function StudentInfo(props) {
     const response = fetch(`/add_student?${params}`, {
       method: 'POST'
     })
-
-    console.log(params);
   }
-
 
   if(props.student === "addition") {
     return (
@@ -98,6 +101,8 @@ function StudentInfo(props) {
           Last Name: {last_name} <br></br>
           Major: {major} <br></br>
           Graduation Year: {grad_year}
+          <br/>
+          <button value='Delete' onClick={(e) => handleDelete(e, _id)}>Delete Student</button>
         </div>
       )
     }

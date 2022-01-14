@@ -15,6 +15,11 @@ function allLoaded(dependencies) {
   return true;
 }
 
+function resetAndRefill() {
+  fetch('/fillWithSampleDB');
+  window.location.reload();
+}
+
 function App() {
   const [studentList, setStudentList] = useState(undefined);
   const [currentStudent, setCurrentStudent] = useState(undefined);
@@ -42,6 +47,8 @@ function App() {
       <div>
         <StudentList studentList={studentList} handleClick={(e) => setCurrentStudent(e)}></StudentList>
         <StudentInfo student={currentStudent}></StudentInfo>
+        <br/>
+        <button onClick={(e) => resetAndRefill()}>Reset DB and Fill with Sample Set</button>
       </div>
     )
   } else {

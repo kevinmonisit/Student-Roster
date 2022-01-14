@@ -62,6 +62,9 @@ def get_students():
 def delete():
     db.students.delete_many({})
 
+    # get rid of TypeError, return nothing
+    return jsonify({})
+
 
 @main.route('/fillWithSampleDB')
 def fill():
@@ -71,3 +74,12 @@ def fill():
 
         db.students.delete_many({})
         db.students.insert_many(sampleDB['student_list'])
+
+    return jsonify({})
+
+
+@main.route('/delete/<object_id>')
+def deleteStudent(object_id):
+    db.students.delete_one({'_id': object_id})
+
+    return jsonify({})
