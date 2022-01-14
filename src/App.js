@@ -33,14 +33,15 @@ function App() {
       setStudentList(json);
       setCurrentStudent(json['student_list'][0]);
     }
-
+    console.log('test');
     request();
   }, []);
 
+  console.log('re-render');
   if (allLoaded([studentList, currentStudent])) {
     return (
       <div>
-        <StudentList studentList={studentList}></StudentList>
+        <StudentList studentList={studentList} handleClick={(e) => setCurrentStudent(e)}></StudentList>
         <StudentInfo student={currentStudent}></StudentInfo>
       </div>
     )
