@@ -6,9 +6,18 @@ import StudentInfo from './components/StudentInfo';
 
 const RUNNING_GUNICORN = false;
 
+function allLoaded(dependencies) {
+  for(const dependency of dependencies) {
+    if(!dependency || Object.getOwnPropertyNames(dependency).length === 0)
+      return false;
+  }
+
+  return true;
+}
+
 function App() {
-  const [studentList, setStudentList] = useState({});
-  const [currentStudent, setCurrentStudent] = useState();
+  const [studentList, setStudentList] = useState(undefined);
+  const [currentStudent, setCurrentStudent] = useState(undefined);
 
   useEffect(() => {
     let json_file;
@@ -18,16 +27,21 @@ function App() {
     else
       json_file = '/get_students';
 
-    fetch(json_file).then(res => res.json()).then(data => {
-      setStudentList(data);
-    })
-  }, [])
+    const request = async () => {
+      const response = await fetch(json_file);
+      const json = await response.json();
+      setStudentList(json);
+      setCurrentStudent(json['student_list'][0]);
+    }
 
-  if (studentList && Object.getOwnPropertyNames(studentList).length > 0) {
+    request();
+  }, []);
+
+  if (allLoaded([studentList, currentStudent])) {
     return (
       <div>
         <StudentList studentList={studentList}></StudentList>
-        <StudentInfo student={studentList}></StudentInfo>
+        <StudentInfo student={currentStudent}></StudentInfo>
       </div>
     )
   } else {

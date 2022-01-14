@@ -5,7 +5,7 @@ function StudentInfo(props) {
 
     return (
       <div>
-        First Name: {studentData.first_name} {"\n"}
+        First Name: {studentData.first_name} <br></br>
         Last Name: {studentData.last_name}
       </div>
     )
