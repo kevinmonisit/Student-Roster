@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "run-watch": "npm run build && gunicorn 'wsgi:gunicorn_get_app()'",
     "start-api": "cd api && ./venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",

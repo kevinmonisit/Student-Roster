@@ -3,22 +3,28 @@ import React, {useState, useEffect} from 'react'
 import StudentButton from './components/studentButton';
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [studentList, setStudentList] = useState({});
+
+  // useEffect(() => {
+  //   fetch('/student_names').then(res => res.json()).then(data => {
+  //     setCurrentTime(data.time);
+  //   });
+  // }, []);
 
   useEffect(() => {
-    fetch('/student_names').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
-  }, []);
+    fetch('/get_students').then(res => res.json()).then(data => {
+      setStudentList(data);
+      console.log(studentList);
+    })
+  }, [])
 
-  return (
-    <div className="App">
-      <StudentButton name='test1'></StudentButton>
-      <StudentButton name='test2'></StudentButton>
-      <StudentButton name='test3'></StudentButton>
-      <StudentButton name='test4'></StudentButton>
-    </div>
-  );
+  if (studentList && Object.getOwnPropertyNames(studentList).length > 0) {
+    return studentList['student_list'].map(student => {
+      return <StudentButton name={student.first_name}></StudentButton>
+    })
+  } else {
+    return "Loading student data...";
+  }
 }
 
 export default App;

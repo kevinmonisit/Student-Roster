@@ -20,7 +20,6 @@ def get_db():
 
         db = g._database = PyMongo(current_app).db
 
-    print(db, file=sys.stderr)
 
     return db
 
@@ -43,7 +42,7 @@ def add_test():
     return jsonify(test_doc)
 
 
-@main.route('/add_student')
+@main.route('/add_student', methods=['POST'])
 def add_student():
     student_first_name = request.args.get('first_name')
     student_last_name = request.args.get('last_name')
@@ -60,6 +59,16 @@ def add_student():
     db.students.insert_one(student_doc)
 
     return jsonify(student_doc)
+
+
+@main.route('/get_students', methods=['GET'])
+def get_students():
+    students = []
+
+    for student in db.students.find():
+        students.append(student)
+
+    return jsonify({'student_list': students})
 
 
 @main.route('/time', methods=['GET'])
