@@ -1,0 +1,32 @@
+{
+  "student_list": [
+    {
+      "_id": "61e0956d1d8484d50a4a0548",
+      "first_name": "Kevin",
+      "grad_year": "2025",
+      "last_name": "Man",
+      "major": "CompSci"
+    },
+    {
+      "_id": "61e09615b216b01fb079e436",
+      "first_name": "Barack",
+      "grad_year": "2022",
+      "last_name": "Obama",
+      "major": "Underwater Basket Weaving"
+    },
+    {
+      "_id": "61e0966ed7d912d8f2c93a1a",
+      "first_name": "Yuji",
+      "grad_year": "2020",
+      "last_name": "Itadori",
+      "major": "Jujutsu"
+    },
+    {
+      "_id": "61e09678c704d851478f4d10",
+      "first_name": "Monkey D.",
+      "grad_year": "1998",
+      "last_name": "Luffy",
+      "major": "Piracy"
+    }
+  ]
+}

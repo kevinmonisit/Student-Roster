@@ -4,7 +4,7 @@ import StudentList from './components/StudentList';
 import StudentInfo from './components/StudentInfo';
 
 
-const RUNNING_GUNICORN = false;
+const RUNNING_GUNICORN = true;
 
 function allLoaded(dependencies) {
   for(const dependency of dependencies) {
@@ -33,11 +33,10 @@ function App() {
       setStudentList(json);
       setCurrentStudent(json['student_list'][0]);
     }
-    console.log('test');
+
     request();
   }, []);
 
-  console.log('re-render');
   if (allLoaded([studentList, currentStudent])) {
     return (
       <div>

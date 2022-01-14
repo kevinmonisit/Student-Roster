@@ -3,6 +3,10 @@ import StudentButton from './StudentButton'
 
 function StudentList(props) {
   const {studentList} = props;
+
+  //create array of buttons
+  //each with the names of each student
+  //in the database
   const studentButtonList =
     studentList['student_list'].map(student => {
       return <StudentButton
@@ -12,7 +16,8 @@ function StudentList(props) {
             </StudentButton>
     });
 
-    const addButton = <StudentButton student={null}
+    const addButton = <StudentButton
+                                  student={"addition"}
                                   key={-1}
                                   handleClick={props.handleClick}>
                       </StudentButton>

@@ -5,7 +5,7 @@ function StudentButton(props) {
   //this indicates that the button
   //is meant to be the button that changes
   //the form to add students
-  if(props.student == null) {
+  if(props.student === "addition") {
     return (
       <button onClick={() => {props.handleClick(props.student)}}>
         +

@@ -1,4 +1,5 @@
 import sys
+from typing import MutableSet
 from flask import current_app, g, request
 from flask import json
 from flask.blueprints import Blueprint
@@ -27,7 +28,7 @@ def get_db():
 db = LocalProxy(get_db)
 
 
-@main.route('/add_student', methods=['POST'])
+@main.route('/add_student', methods=['POST', 'GET'])
 def add_student():
     student_first_name = request.args.get('first_name')
     student_last_name = request.args.get('last_name')
@@ -54,3 +55,8 @@ def get_students():
         students.append(student)
 
     return jsonify({'student_list': students})
+
+
+@main.route('/deleteDB')
+def delete():
+    db.students.delete_many({})
