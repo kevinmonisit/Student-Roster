@@ -6,7 +6,7 @@ from flask.blueprints import Blueprint
 from flask.json import jsonify
 from flask_pymongo import PyMongo
 from werkzeug.local import LocalProxy
-import time
+from bson.objectid import ObjectId
 import os
 
 main = Blueprint('main', __name__)
@@ -37,6 +37,7 @@ def add_student():
     major = request.args.get('major')
 
     student_doc = {
+        '_id': str(ObjectId()),
         'first_name': student_first_name,
         'last_name': student_last_name,
         'grad_year': grad_year,
