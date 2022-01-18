@@ -3,7 +3,7 @@ import StudentList from './components/StudentList';
 import StudentInfo from './components/StudentInfo';
 
 
-const RUNNING_GUNICORN = true;
+const RUNNING_GUNICORN = false;
 
 function allLoaded(dependencies) {
   for(const dependency of dependencies) {
@@ -43,11 +43,24 @@ function App() {
 
   if (allLoaded([studentList, currentStudent])) {
     return (
-      <div>
-        <StudentList studentList={studentList} handleClick={(e) => setCurrentStudent(e)}></StudentList>
-        <StudentInfo student={currentStudent}></StudentInfo>
-        <br/>
-        <button onClick={(e) => resetAndRefill()}>Reset DB and Fill with Sample Set</button>
+      <div className='flex flex-col w-screen'>
+        {/* Control section of the page */}
+        <div className='flex flex-row'>
+          <div className='flex items-center justify-evenly w-1/2 flex-wrap content-around'>
+            <StudentList
+              studentList={studentList} handleClick={(e) => setCurrentStudent(e)}></StudentList>
+          </div>
+          <div className='w-1/2 text-center'>
+            <StudentInfo student={currentStudent}></StudentInfo>
+          </div>
+        </div>
+
+        {/* Below the control section */}
+        <div className='w-screen place-content-center grid place-content-center'>
+          <br/>
+          <button className='bg-blue-500 hover:bg-blue-400 text-white font-bold px-4 rounded w-auto'
+          onClick={(e) => resetAndRefill()}>Reset DB and Fill with Sample Set</button>
+        </div>
       </div>
     )
   } else {

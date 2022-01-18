@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 
 const handleDelete = (event, _id) => {
   console.log(_id);
-  const response = fetch(`/delete/${_id}`);
-  window.location.reload();
+ if(typeof _id === Object) {
+   const response = fetch(`/delete/${_id}`);
+   window.location.reload();
+ }
 }
 
 function StudentInfo(props) {
@@ -97,12 +99,12 @@ function StudentInfo(props) {
 
       return (
         <div>
-          First Name: {first_name} <br></br>
-          Last Name: {last_name} <br></br>
-          Major: {major} <br></br>
-          Graduation Year: {grad_year}
+          <strong>First Name:</strong> {first_name} <br></br>
+          <strong>Last Name:</strong> {last_name} <br></br>
+          <strong>Major:</strong> {major} <br></br>
+          <strong>Graduation Year:</strong> {grad_year}
           <br/>
-          <button value='Delete' onClick={(e) => handleDelete(e, _id)}>Delete Student</button>
+          <button className='bg-blue-500 hover:bg-blue-400 text-white font-bold px-4 rounded w-auto' value='Delete' onClick={(e) => handleDelete(e, _id)}>Delete Student</button>
         </div>
       )
     }

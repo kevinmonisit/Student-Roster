@@ -7,13 +7,13 @@ function StudentButton(props) {
   //the form to add students
   if(props.student === "addition") {
     return (
-      <button onClick={() => {props.handleClick(props.student)}}>
+      <button className={props.className} onClick={() => {props.handleClick(props.student)}}>
         +
       </button>
     )
   } else {
     return (
-      <button onClick={() => {props.handleClick(props.student)}}>
+      <button className={props.className} onClick={() => {props.handleClick(props.student)}}>
         {props.student.first_name}
       </button>
     )
