@@ -1,11 +1,11 @@
-# OSS Starting Project (Student Roster)
+# Student Roster
 Built with React, Flask, and MongoDB. Depolyed on Heroku.
 
 To run on your own computer, type the following:
 
 ```
-git clone git@github.com:kevinmonisit/Student-Roster-OSS.git
-cd Student-Roster-OSS
+git clone git@github.com:kevinmonisit/Student-Roster.git
+cd Student-Roster
 npm install
 python3 -m venv ./api/venv
 source ./api/venv/bin/activate
